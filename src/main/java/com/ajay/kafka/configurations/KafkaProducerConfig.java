@@ -1,6 +1,6 @@
-package com.ajay.kafkaProducer.configurations;
+package com.ajay.kafka.configurations;
 
-import com.ajay.kafkaProducer.model.Person;
+import com.ajay.kafka.model.Person;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,7 +17,7 @@ import java.util.Map;
 @Configuration
 public class KafkaProducerConfig {
 
-    @Value(value = "${spring.kafka.bootstrap-servers}")
+    @Value(value = "${spring.kafka.producer.bootstrap-servers}")
     private String bootstrapAddress;
 
     @Bean
