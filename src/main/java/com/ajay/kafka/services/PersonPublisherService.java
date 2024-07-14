@@ -3,7 +3,7 @@ package com.ajay.kafka.services;
 import com.ajay.kafka.model.Person;
 import com.ajay.kafka.utils.AppConstants;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.KafkaHeaders;
 import org.springframework.kafka.support.SendResult;
@@ -15,9 +15,14 @@ import java.util.concurrent.CompletableFuture;
 
 @Service
 @Slf4j
+
 public class PersonPublisherService {
-    @Autowired
-    private KafkaTemplate<String, Person> kafkaTemplate;
+
+    private final KafkaTemplate<String, Person> kafkaTemplate;
+
+    public PersonPublisherService( @Qualifier("kafkaPersonTemplate") KafkaTemplate<String, Person> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
     public void sendMessage(Person person) {
 
